@@ -9,13 +9,12 @@ void printar_matrizes_alocar_barco(int jogador[][10]){
     for (int i = 0; i < 10; i++)
     {
         if (i == 0){
-            printf("           0  1  2  3  4  5  6  7  8  9\n\n");
+            printf(RESET"           0  1  2  3  4  5  6  7  8  9\n\n");
         }
         printf("%d        ",i);
         for(int j = 0; j < 10; j++)
         {
-            
-            printf("%3d", jogador[i][j]);
+            printf(RESET"%3d", jogador[i][j]);
         }
         printf("\n");
     }
@@ -24,9 +23,9 @@ void printar_matrizes_jogo(int jogador[][10]){
     for (int i = 0; i < 10; i++)
     {
         if (i == 0){
-            printf("           0  1  2  3  4  5  6  7  8  9\n\n");
+            printf(RESET"           0  1  2  3  4  5  6  7  8  9\n\n");
         }
-        printf("%d        ",i);
+        printf(RESET"%d        ",i);
         for(int j = 0; j < 10; j++)
         {
             if (jogador[i][j] == 1)
@@ -61,14 +60,13 @@ int verificar_barco(int jogador[][10]){
     return barco;
 }
 void atacar(int ataque[], int jogador[][10]){
-    int comprar_tempo = 0;
     if (jogador[ataque[0]][ataque[1]] == 1)
     {
-        printf("Voce acertou um barcou ou pedaco de barco, parabens!\n");
+        printf(RESET"Voce acertou um barcou ou pedaco de barco, parabens!\n");
         jogador[ataque[0]][ataque[1]] = 2;
     }else if (jogador[ataque[0]][ataque[1]] == 0)
     {
-        printf("Acertou a agua :(\n");
+        printf(RESET"Acertou a agua :(\n");
         jogador[ataque[0]][ataque[1]] = -1;
     }
     printar_matrizes_jogo(jogador);
@@ -91,7 +89,7 @@ int main(){
     
     do
     {
-        printf("Escolha uma opcao:\n1 - alocar navios\n2 - iniciar jogo\n3 - fechar jogo\n");
+        printf(RESET"Escolha uma opcao:\n1 - alocar navios\n2 - iniciar jogo\n3 - fechar jogo\n");
         scanf("%d",&switchCase);
         switch (switchCase)
         {
@@ -108,7 +106,7 @@ int main(){
                 int porta_avioes = 1, navios_tanque = 2, contratorpedos = 3, submarinos = 4;
                 int qntd_porta_avioes = 1, qntd_navios_tanque = 2, qntd_contratorpedos = 3, qntd_submarinos = 4;
                 int escolha;
-                printf("Escolha:\n1 - Alocar navios para jogador %d\n0 - fechar alocacao de navios\n", contador); 
+                printf(RESET"Escolha:\n1 - Alocar navios para jogador %d\n0 - fechar alocacao de navios\n", contador); 
                 scanf("%d",&escolha);
                 while (escolha == 1)
                 {
@@ -197,7 +195,7 @@ int main(){
                             }
                             if ((posicao[0] + vertical - 1 > 9 || posicao[1] + horizontal - 1 > 9) || ha_barco > 0)
                             {
-                                printf("posicao escolhida é invalida, digite novamente:\n");
+                                printf("posicao escolhida E invalida, digite novamente:\n");
                                 scanf("%d %d", &posicao[0], &posicao[1]);
                             }
                             
@@ -240,7 +238,7 @@ int main(){
                         scanf("%d",&escolha);
                     }else{
                         int nada;
-                        printf("Navio escolhido nao existe ou não possui mais estoque UwU\n digite qlqr coisa para continuar\n"); 
+                        printf("Navio escolhido nao existe ou nAo possui mais estoque\n digite qlqr coisa para continuar\n"); 
                         scanf("%d", &nada);
                     }
                 }
@@ -252,23 +250,23 @@ int main(){
             while (verificar_barco(jogador1) == 1 && verificar_barco(jogador2) == 1)
             {
                 int ataque[2];
-                printf("Vez do jogador 1 atacar o jogador 2:\n\n\n");
+                printf(RESET"Vez do jogador 1 atacar o jogador 2:\n\n\n");
                 printar_matrizes_jogo(jogador2);
-                printf("Escolha as posicoes que deseja fazer o ataque! linha *espaco* coluna\n");
+                printf(RESET"Escolha as posicoes que deseja fazer o ataque! linha *espaco* coluna\n");
                 scanf("%d %d", &ataque[0], &ataque[1]);
                 atacar(ataque, jogador2);
-                printf("Vez do jogador 2 atacar o jogador 1:\n\n\n");
+                printf(RESET"Vez do jogador 2 atacar o jogador 1:\n\n\n");
                 printar_matrizes_jogo(jogador1);
-                printf("Escolha as posicoes que deseja fazer o ataque! linha *espaco* coluna\n");
+                printf(RESET"Escolha as posicoes que deseja fazer o ataque! linha *espaco* coluna\n");
                 scanf("%d %d", &ataque[0], &ataque[1]);
                 atacar(ataque, jogador1);
 
             }
             if (verificar_barco(jogador1) == 1)
             {
-                printf("Jogador 1 ganhou!!!!\n");
+                printf(RESET"Jogador 1 ganhou!!!!\n");
             }else{
-                printf("Jogador 2 ganhou!!!!\n");
+                printf(RESET"Jogador 2 ganhou!!!!\n");
             }
             break;
         case 3:
